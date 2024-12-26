@@ -15,11 +15,6 @@ public class MainPage {
     private static final By LOWER_ORDER_BUTTON = By.xpath(".//button[@class = 'Button_Button__ra12g Button_Middle__1CSJM']");
     // UPPER_ORDER_BUTTON - локатор для кнопки "Заказать" в заголовке страницы
     private static final By UPPER_ORDER_BUTTON = By.xpath(".//div[contains(@class, 'Header')]/button[text()='Заказать']");
-
-    //локатор для первого для вопроса из раздела "Вопросы о важном", не используется так как далее локатор будет параметризирован
-    // private static final By FAQ_FIRST_QUESTION = By.id("accordion__heading-1");
-    //локатор для первого для ответа на вопрос из раздела "Вопросы о важном", не используется так как далее локатор будет параметризирован
-    // private static final By FAQ_ANSWER = By.xpath(".//*[@id = 'accordion__panel-1']/p");
     // строка для локатора вопроса из раздела "Вопросы о важном"
     private static final String LOCATOR_QUESTION_STRING = "accordion__heading-%d";
     // строка для локатора ответа на вопрос из раздела "Вопросы о важном"
@@ -41,12 +36,6 @@ public class MainPage {
         WebElement upperOrderButton = driver.findElement(UPPER_ORDER_BUTTON);
         upperOrderButton.click();
     }
-
-  /*  public void clickQuestionInFaqSection() {
-        WebElement faqFirstListItem = driver.findElement(FAQ_FIRST_QUESTION);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", faqFirstListItem);
-        faqFirstListItem.click();
-    }*/
 
     //формируется локатор для вопроса из раздела "Вопросы о важном" по номеру
     public static By getLocatorIDByNumber(int number) {

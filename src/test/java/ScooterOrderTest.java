@@ -7,29 +7,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 @RunWith(Parameterized.class)
 public class ScooterOrderTest {
-
+    private static final String BROWSER_NAME = "chrome";
     private static final String HOMEPAGE_URL = "https://qa-scooter.praktikum-services.ru/";
     private static final String ORDER_CONFIRMATION = "Заказ оформлен";
 
-//    private static final String NAME_TEXT = "Лиза";
-//    private static final String SURNAME_TEXT = "Дребеденькина";
-//    private static final String ADDRESS_TEXT = "Москва";
-//    private static final String PHONE_NUMBER_TEXT = "89867774455";
-//    private static final String COMMENT_TEXT = "Тра-та-та, тра-та-та, мы везем с собой кота";
 
     // параметры теста
     private final String customerName;
@@ -58,8 +47,18 @@ public class ScooterOrderTest {
 
     @Before
     public void startUp() {
-        driver = new ChromeDriver();
+        driver = getWebDriver(BROWSER_NAME);
         driver.get(HOMEPAGE_URL);
+    }
+
+    public static WebDriver getWebDriver(String browserName) {
+        if (browserName.equals("firefox")) {
+            return new FirefoxDriver();
+        } else if (browserName.equals("chrome")) {
+            return new ChromeDriver();
+        } else {
+            throw new RuntimeException("Неизвестный браузер: " + browserName);
+        }
     }
 
     @Test
